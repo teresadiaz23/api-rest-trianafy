@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import morgan from "morgan";
 import morganBody from "morgan-body";
 import mongoose from 'mongoose';
+import passport from './services/passport/index.js';
 
 import models from './models/index.js';
 import routes from './routes/index.js';
@@ -19,13 +20,15 @@ const app = express();
 app.use(morgan('dev'));
 morganBody(app);
 
-// app.use((req, res, next) => {
+app.use(passport.initialize());
+
+app.use((req, res, next) => {
     
-//     req.context = {
-//       models,
-//     };
-//     next();
-//   });
+    req.context = {
+      models,
+    };
+    next();
+  });
 
 
 
@@ -45,6 +48,7 @@ morganBody(app);
 // Inicialización del servidor y conexión a base de datos
 
 app.use('/songs', routes.song);
+app.use('/auth', routes.auth);
 
 mongoose.connect('mongodb://localhost/trianafy', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
   

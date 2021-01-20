@@ -16,6 +16,11 @@ const emailExists = async (email) => {
     return result > 0;
 }
 
+const usernameExists = (username) => {
+    let usernames = users.map(user => user.username);
+    return usernames.includes(username);
+}
+
 
 
 const UserRepository = {
@@ -23,6 +28,16 @@ const UserRepository = {
     async findAll() {
         const users = await User.find({}).exec();
         return users;
+    },
+
+    async findById(id) {
+        const user = await User.findById(id).exec();
+        return user != null ? user : undefined;
+    },
+
+    async findByUsername(username) {
+        const user = await User.find({'username': username}).exec();
+        return user != null ? user : undefined;
     },
 
     async create(newUser) {
@@ -50,5 +65,6 @@ const UserRepository = {
 export {
     User,
     emailExists,
+    usernameExists,
     UserRepository
 }
