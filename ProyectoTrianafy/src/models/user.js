@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+    _id: Schema.Types.ObjectId,
     fullname: String,
     username: String,
     email: String,
@@ -17,15 +18,16 @@ const emailExists = async (email) => {
 
 
 
-const userRepository = {
+const UserRepository = {
 
     async findAll() {
         const users = await User.find({}).exec();
         return users;
     },
 
-    async createUser(newUser) {
+    async create(newUser) {
         const usuario = new User({
+            _id: new mongoose.Types.ObjectId(),
             fullname: newUser.fullname,
             username: newUser.username,
             email: newUser.email,
@@ -48,5 +50,5 @@ const userRepository = {
 export {
     User,
     emailExists,
-    userRepository
+    UserRepository
 }

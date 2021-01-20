@@ -6,43 +6,58 @@ import morgan from "morgan";
 import morganBody from "morgan-body";
 import mongoose from 'mongoose';
 
-// import models from './models';
-// import routes from './routes';
+import models from './models/index.js';
+import routes from './routes/index.js';
+
 
 const app = express();
 
-app.use(cors);
-app.use(bodyParser.json);
-app.use(bodyParser.urlencoded({extended: true}));
+//app.use(cors);
+//app.use(bodyParser.json);
+//app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(morgan('dev'));
 morganBody(app);
 
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
     
-    req.context = {
-      models,
-    };
-    next();
-  });
+//     req.context = {
+//       models,
+//     };
+//     next();
+//   });
+
+
+
+
+// app.get('/hello', (req, res) => {
+//     res.send("¡Hola Mundo!");
+// });
+  
 
 // app.listen(process.env.PORT, () =>
 //     console.log(`Servidor abierto en el puerto ${process.env.PORT}!`)
 // );
 
+
+
+
 // Inicialización del servidor y conexión a base de datos
 
-mongoose.connect('mongodb://localhost/mongoose', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+app.use('/songs', routes.song);
+
+mongoose.connect('mongodb://localhost/trianafy', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
   
     if (err) {
       console.log(`Error de conexión a la base de datos: ${JSON.stringify(err)}`);
     } else {
-      console.log(`Conexión correcta a la base de datos en la URI ${process.env.DB_URI}`);
-      app.listen(process.env.PORT, () =>
+      console.log(`Conexión correcta a la base de datos en la URI mongodb://localhost/trianafy`);
+      app.listen(9000, () =>
         console.log(
-          `¡Aplicación de ejemplo escuchando en el puerto ${process.env.PORT}!`
+          `¡Servidor abierto en el puerto 9000!`
         )
       );
     }
   
 });
+

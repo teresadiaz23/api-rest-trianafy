@@ -4,13 +4,13 @@ const { Schema } = mongoose;
 const listSchema = new Schema({
     name: String,
     description: String,
-    user_id: mongoose.ObjectId,
-    songs: ['Song']
+    // user: { type: ObjectId, ref: 'User' },
+    // songs: [{ type: ObjectId, ref: 'Song' }]
 });
 
 const Playlist = mongoose.model('Playlist', listSchema);
 
-const playlistRepository = {
+const PlaylistRepository = {
 
     async findAll() {
         const list = await Playlist.find({}).exec();
@@ -18,5 +18,3 @@ const playlistRepository = {
     }
 }
 
-    
-    

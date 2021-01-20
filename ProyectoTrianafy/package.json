@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon -L --exec babel-node mongod.exe --bind_ip=0.0.0.0 src/index.js",
+    "start": "nodemon -L --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Teresa Díaz",

@@ -1,5 +1,5 @@
-import * as users from "./user"
-import * as playlists from "./playlist"
+import * as users from "./user.js"
+import * as playlists from "./playlist.js"
 
 export default {
     users,
