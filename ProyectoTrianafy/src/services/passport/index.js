@@ -21,6 +21,18 @@ passport.use(new LocalStrategy({
     else{
         return done(null, user); //Quitar que se muestre la contraseña
     }
+    // user.then(u => {
+    //     if(u == undefined){
+    //         return done(null, false);
+    //     }
+    //     else if(!bcrypt.compareSync(password, user.password)){
+    //         return done(null, false);
+    //     }
+    //     else{
+    //         return done(null, user); //Quitar que se muestre la contraseña
+    //     }
+    // }).catch(error => console.log(error));
+    
 }));
 
 
@@ -33,6 +45,14 @@ const opts = {
 passport.use('token', new JwtStrategy(opts, (jwt_payload, done) => {
     const user_id = jwt_payload.sub;
     const user = UserRepository.findById(user_id);
+    // user.then(u => {
+    //     if(u == undefined){
+    //         return done(null, false);
+    //     }
+    //     else{
+    //         return done(null, user);
+    //     }
+    // });
     if(user == undefined){
         return done(null, false);
     }
@@ -48,14 +68,15 @@ export const password = () => (req, res, next) =>
             return res.status(400).json(err);
         }
         else if (err || !user){
-            return res.status(401).end();
+            return res.status(401).end()
         }
 
         req.logIn(user, {session: false}, (err) => {
             if(err) return res.status(401).end()
             next()
         })
-    })(req, rees, next);
+    })(req, res, next);
+
 
 
 export const token = () => (req, res, next) =>

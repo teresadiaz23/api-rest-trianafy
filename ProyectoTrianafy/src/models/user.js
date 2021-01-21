@@ -26,7 +26,7 @@ const usernameExists = (username) => {
 const UserRepository = {
 
     async findAll() {
-        const users = await User.find({}).exec();
+        const users = await User.find({}, '_id fullname username email').exec();
         return users;
     },
 
@@ -36,7 +36,7 @@ const UserRepository = {
     },
 
     async findByUsername(username) {
-        const user = await User.find({'username': username}).exec();
+        const user = await User.find({'username': username}, '_id fullname username email').exec();
         return user != null ? user : undefined;
     },
 
@@ -51,6 +51,8 @@ const UserRepository = {
 
         const result = await usuario.save();
 
+        //return result;
+
         return {
             id: result.id,
             fullname: result.fullname,
@@ -61,6 +63,19 @@ const UserRepository = {
 
 
 }
+
+// let yo = new User({
+//     _id: new mongoose.Types.ObjectId(),
+//     fullname: "Teresa Díaz",
+//     username: "tdiaz",
+//     email: "teresa@gmail.com",
+//     password: "1234"
+// });
+
+// yo.save(err => {
+//     if(err) throw err;
+//     console.log("Guardado con éxito");
+// })
 
 export {
     User,

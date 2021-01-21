@@ -3,12 +3,12 @@ import { body } from 'express-validator';
 import { emailExists, usernameExists } from '../models/user.js';
 import { AuthController } from '../controllers/auth.js';
 //import { validar } from '../middlewares/validacion';
-//import { password } from '../services/passport';
+import { password } from '../services/passport/index.js';
 
 const router = Router();
 
 router.post('/register', AuthController.register);
 
-//router.post('/login', password(), AuthController.login);
+router.post('/login', password(), AuthController.login);
 
 export default router;

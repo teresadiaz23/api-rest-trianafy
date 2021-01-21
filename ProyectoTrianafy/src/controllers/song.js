@@ -22,35 +22,50 @@ const SongController = {
     },
 
     newSong: async (req, res) => {
-        let song = await SongRepository.create({
-            title: req.body.title,
-            artist: req.body.artist,
-            album: req.body.album,
-            year: req.body.year
-        });
-        //res.status(201).json(song);
-        if (song) {
+
+        try{
+            let song = await SongRepository.create({
+                title: req.body.title,
+                artist: req.body.artist,
+                album: req.body.album,
+                year: req.body.year
+            });
             res.status(201).json(song);
+        // if (song) {
+        //     res.status(201).json(song);
+        // }
+        // else{
+        //     res.sendStatus(404);
+        // }
         }
-        else{
-            res.sendStatus(404);
-        }
+        catch (err){
+            console.log(err);
+
+        } 
     },
 
+
     updateSong: async (req, res) => {
-        let song = await SongRepository.updateById(req.params.id, {
-            title: req.body.title,
-            artist: req.body.artist,
-            album: req.body.album,
-            year: req.body.year
-        });
+
+        try{
+            let song = await SongRepository.updateById(req.params.id, {
+                title: req.body.title,
+                artist: req.body.artist,
+                album: req.body.album,
+                year: req.body.year
+            });
+            
+            if(song != undefined) {
+                res.status(204).json(song);
+            }
+            else{
+                res.sendStatus(404);
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
         
-        if(song != undefined) {
-            res.send(204).json(song);
-        }
-        else{
-            res.sendStatus(404);
-        }
     },
 
     deleteSong: async (req, res) => {

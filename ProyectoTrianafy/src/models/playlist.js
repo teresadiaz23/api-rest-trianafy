@@ -2,10 +2,11 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const listSchema = new Schema({
+    _id: Schema.Types.ObjectId,
     name: String,
     description: String,
-    // user: { type: ObjectId, ref: 'User' },
-    // songs: [{ type: ObjectId, ref: 'Song' }]
+    user: { type: mongoose.ObjectId, ref: 'User' },
+    songs: [{ type: mongoose.ObjectId, ref: 'Song' }]
 });
 
 const Playlist = mongoose.model('Playlist', listSchema);

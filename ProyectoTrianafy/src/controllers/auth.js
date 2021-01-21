@@ -5,13 +5,15 @@ import { JwtService } from '../services/jwt/index.js';
 
 const AuthController = {
 
-    register: (req, res, next) => {
-        let newUser = UserRepository.create(
-            new User(req.body.fullname,
-                req.body.username,
-                req.body.email,
-                bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_ROUNDS)))
-        );
+    register: async (req, res, next) => {
+        
+        let newUser = await UserRepository.create({
+            fullname: req.body.fullname,
+            username: req.body.username,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_ROUNDS))
+            });
+            
         res.status(201).json(newUser);
     },
 
