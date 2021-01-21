@@ -1,30 +1,14 @@
-import 'dotenv/config';
-import { User, UserRepository } from "../models/user.js";
-import bcrypt from 'bcryptjs';
-import { JwtService } from '../services/jwt';
+import { Router } from 'express';
+import { body } from 'express-validator';
+import { emailExists, usernameExists } from '../models/user.js';
+import { AuthController } from '../controllers/auth.js';
+//import { validar } from '../middlewares/validacion';
+import { password } from '../services/passport/index.js';
 
-const AuthController = {
+const router = Router();
 
-    register: (req, res, next) => {
-        let newUser = UserRepository.create(
-            new User(req.body.fullname,
-                req.body.username,
-                req.body.email,
-                bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_ROUNDS)))
-        );
-        res.status(201).json(newUser);
-    },
+router.post('/register', AuthController.register);
 
-    login: (req, res, next) => {
-        const token = JwtService.sign(req.user);
-        res.status(201).json({
-            user: req.user,
-            token: token
-        });
-    }
+router.post('/login', password(), AuthController.login);
 
-}
-
-export {
-    AuthController
-}
+export default router;
