@@ -12,13 +12,15 @@ const userSchema = new Schema({
 const User = mongoose.model('User', userSchema);
 
 const emailExists = async (email) => {
-    const result = await User.countDocuments({ email: email }).exec();
-    return result > 0;
+    const result = await User.find({'email': email});
+    return result;
+    // const result = await User.countDocuments({ email: email }).exec();
+    // return result > 0;
 }
 
 const usernameExists = async (username) => {
     const user = await User.find({'username': username}).exec();
-    return user;
+    return user != null ? true : false;
     // let usernames = users.map(user => user.username);
     // return usernames.includes(username);
 }
