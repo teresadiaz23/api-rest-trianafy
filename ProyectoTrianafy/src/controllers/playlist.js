@@ -1,4 +1,4 @@
-import { PlaylistRepository } from "../models/playlist.js";
+import { Playlist, PlaylistRepository } from "../models/playlist.js";
 import { UserRepository } from "../models/user.js";
 import { SongRepository } from "../models/song.js";
 
@@ -74,9 +74,51 @@ const PlaylistController = {
         else{
             res.sendStatus(404);
         }
+    },
+
+    allSongPlaylist: async (req, res) => {
+        let list = await PlaylistRepository.findById(req.params.id);
+        if(list != undefined) {
+            let songs = list.songs;
+            console.log(songs)
+            res.json(songs);
+        }
+        else{
+            res.sendStatus(404);
+        }
+    },
+
+    getSongPlaylist: async (req, res) => {
+        let list = await PlaylistRepository.findById(req.params.id_list);
+        if(list != undefined) {
+            let song = await SongRepository.findById(req.params.id_song);
+            if(song != undefined){
+                res.json(song);
+            }
+            else{
+                res.sendStatus(404);
+            }
+        }
+        else{
+            res.sendStatus(404);
+        }
+    },
+
+    delSongPlaylist: async (req, res) => {
+        let list = await PlaylistRepository.findById(req.params.id_list);
+        if (list != undefined) {
+            list.songs.pull(req.params.id_song);
+            await list.save();
+            res.status(204).json(await PlaylistRepository.findById(list._id));
+        }
+        else{
+            res.sendStatus(404);
+        }
     }
 
 }
+
+
 
 
 
