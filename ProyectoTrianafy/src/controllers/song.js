@@ -30,13 +30,13 @@ const SongController = {
                 album: req.body.album,
                 year: req.body.year
             });
-            res.status(201).json(song);
-        // if (song) {
-        //     res.status(201).json(song);
-        // }
-        // else{
-        //     res.sendStatus(404);
-        // }
+            //res.status(201).json(song);
+            if (song) {
+                res.status(201).json(song);
+            }
+            else{
+                res.sendStatus(404);
+            }
         }
         catch (err){
             console.log(err);

@@ -50,6 +50,7 @@ app.use((req, res, next) => {
 app.use('/songs', routes.song);
 app.use('/auth', routes.auth);
 app.use('/users', routes.user);
+app.use('/lists', routes.playlist);
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
   

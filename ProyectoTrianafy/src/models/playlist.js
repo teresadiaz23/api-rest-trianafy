@@ -14,8 +14,64 @@ const Playlist = mongoose.model('Playlist', listSchema);
 const PlaylistRepository = {
 
     async findAll() {
-        const list = await Playlist.find({}).exec();
+        const list = await Playlist.find()
+        .populate('user', '_id')
+        .populate({
+            path: 'songs',
+            select: '_id title artist album year'
+        })
+        .exec();
         return list; 
+    },
+
+    async findById(id) {
+        return await Playlist
+        .findById(id)
+        .populate('songs')
+        .populate('user', '_id')
+        .exec();
+    },
+
+    async create(newPlaylist) {
+        const list = new Playlist({
+            _id: new mongoose.Types.ObjectId(),
+            name: newPlaylist.name,
+            description: newPlaylist.description,
+        });
+
+        const result = await list.save();
+        return result;
+    },
+
+    async updateById(id, editPlaylist) {
+        const list = await Playlist.findById(id);
+        if(list == null) {
+            return undefined;
+        }
+        else{
+            return await Object.assign(list, editPlaylist).save();
+        }
+    },
+
+    async delete(id) {
+        await Playlist.findByIdAndRemove(id).exec();
     }
+
 }
 
+// let pop = new Playlist({
+//     _id: new mongoose.Types.ObjectId(),
+//     name: "Éxitos Pop",
+//     description: "Las canciones más novedosas del pop internacional",
+// });
+
+// pop.save(err => {
+//     if(err) throw err;
+//     console.log("Guardado con éxito");
+// })
+
+
+export {
+    Playlist,
+    PlaylistRepository
+}
