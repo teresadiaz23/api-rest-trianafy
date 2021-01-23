@@ -28,9 +28,14 @@ const PlaylistController = {
     newPlaylist: async (req, res) => {
         let list = await PlaylistRepository.create({
             name: req.body.name,
-            description: req.body.description
+            description: req.body.description,
+            
         });
+        
         if (list) {
+            let usuario = await req.user;
+            list.user = usuario;
+            await list.save();
             res.status(201).json(list);
         }
         else{

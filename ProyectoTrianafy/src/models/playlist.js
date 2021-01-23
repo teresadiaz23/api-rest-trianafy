@@ -15,10 +15,10 @@ const PlaylistRepository = {
 
     async findAll() {
         const list = await Playlist.find()
-        .populate('user', '_id')
+        //.populate('user')
         .populate({
             path: 'songs',
-            select: '_id title artist album year'
+            select: 'title artist album year'
         })
         .exec();
         return list; 
@@ -28,7 +28,7 @@ const PlaylistRepository = {
         return await Playlist
         .findById(id)
         .populate('songs')
-        .populate('user', '_id')
+        .populate('user')
         .exec();
     },
 
@@ -38,7 +38,7 @@ const PlaylistRepository = {
             name: newPlaylist.name,
             description: newPlaylist.description,
         });
-
+        
         const result = await list.save();
         return result;
     },

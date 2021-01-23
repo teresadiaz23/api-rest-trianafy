@@ -1,5 +1,5 @@
 import "dotenv/config.js";
-import { User, UserRepository } from "../models/user.js";
+import { User, UserRepository, toDto } from "../models/user.js";
 import bcrypt from 'bcryptjs';
 import { JwtService } from '../services/jwt/index.js';
 
@@ -14,7 +14,7 @@ const AuthController = {
             password: bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_ROUNDS))
             });
             
-        res.status(201).json(newUser);
+        res.status(201).json(toDto(newUser));
     },
 
     login: (req, res, next) => {

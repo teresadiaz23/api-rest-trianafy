@@ -1,27 +1,27 @@
 import { Router } from 'express';
 import { PlaylistController } from "../controllers/playlist.js"
-import { Playlist } from '../models/playlist.js';
+import { token } from '../services/passport/index.js';
 
 
 const router = Router();
 
-router.get('/', PlaylistController.allPlaylists);
+router.get('/', token(), PlaylistController.allPlaylists);
 
-router.post('/', PlaylistController.newPlaylist);
+router.post('/', token(), PlaylistController.newPlaylist);
 
-router.get('/:id', PlaylistController.playListById);
+router.get('/:id', token(), PlaylistController.playListById);
 
-router.put('/:id', PlaylistController.editPlaylist);
+router.put('/:id', token(), PlaylistController.editPlaylist);
 
-router.delete('/:id', PlaylistController.deletePlaylist);
+router.delete('/:id', token(), PlaylistController.deletePlaylist);
 
-router.post('/:id_list/songs/:id_song', PlaylistController.addSongPlaylist);
+router.post('/:id_list/songs/:id_song', token(), PlaylistController.addSongPlaylist);
 
-router.get('/:id/songs', PlaylistController.allSongPlaylist);
+router.get('/:id/songs', token(), PlaylistController.allSongPlaylist);
 
-router.get('/:id_list/songs/:id_song', PlaylistController.getSongPlaylist);
+router.get('/:id_list/songs/:id_song', token(), PlaylistController.getSongPlaylist);
 
-router.delete('/:id_list/songs/:id_song', PlaylistController.delSongPlaylist);
+router.delete('/:id_list/songs/:id_song', token(), PlaylistController.delSongPlaylist);
 
 
 export default router;
