@@ -51,24 +51,56 @@ const PlaylistController = {
 
     editPlaylist: async (req, res) => {
         try{
-            let list = await PlaylistRepository
-            .updateById(req.params.id, {
-                name: req.body.name,
-                description: req.body.description
-            });
+            let lista = await PlaylistRepository.findById(req.params.id);
+            let usuario = await req.user;
+            console.log(lista.user._id);
+            console.log(usuario.id)
+            if(lista.user._id == usuario.id){
+                let list = await PlaylistRepository
+                .updateById(req.params.id, {
+                    name: req.body.name,
+                    description: req.body.description
+                });
 
-            if(list != undefined) {
-                res.status(204).json(list);
+                if(list != undefined) {
+                    res.status(204).json(list);
+                }
+                else{
+                    res.sendStatus(404);
+                }
             }
             else{
-                res.sendStatus(404);
+                res.status(401).send('No tienes permiso para editar esta lista de reproducción.')
             }
+            
         }
         catch(error) {
             res.status(404).send(error); 
         }
         
     },
+
+    // editPlaylist: async (req, res) => {
+    //     try{
+            
+    //         let list = await PlaylistRepository
+    //         .updateById(req.params.id, {
+    //             name: req.body.name,
+    //             description: req.body.description
+    //         });
+
+    //         if(list != undefined) {
+    //             res.status(204).json(list);
+    //         }
+    //         else{
+    //             res.sendStatus(404);
+    //         }
+    //     }
+    //     catch(error) {
+    //         res.status(404).send(error); 
+    //     }
+        
+    // },
 
     deletePlaylist: async (req, res) => {
         try{

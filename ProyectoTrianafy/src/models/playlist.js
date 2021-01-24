@@ -27,6 +27,7 @@ const PlaylistRepository = {
     async findById(id) {
         return await Playlist
         .findById(id)
+        .populate('user', '_id')
         .populate({
             path: 'songs',
             select: 'title artist album year'
