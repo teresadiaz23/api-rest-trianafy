@@ -21,17 +21,15 @@ const userSchema = new Schema({
 const User = mongoose.model('User', userSchema);
 
 const emailExists = async (email) => {
-    const result = await User.find({'email': email}).exec();
-    return result;
-    // const result = await User.countDocuments({ email: email }).exec();
-    // return result > 0;
+    const result = await User.findOne({'email': email}).exec();
+    return result != null ? true : false ;
+
 }
 
 const usernameExists = async (username) => {
-    const user = await User.find({'username': username}).exec();
+    const user = await User.findOne({'username': username}).exec();
     return user != null ? true : false;
-    // let usernames = users.map(user => user.username);
-    // return usernames.includes(username);
+
 }
 
 const toDto = (user) => {
@@ -58,7 +56,6 @@ const UserRepository = {
     },
 
     async findByUsername(username) {
-        // const user = await User.findOne({'username': username}, '_id fullname username email').exec();
         const user = await User.findOne({'username': username}).exec();
         return user != null ? user : undefined;
     },
@@ -73,8 +70,6 @@ const UserRepository = {
         });
 
         const result = await usuario.save();
-
-        //return result;
 
         return {
             id: result.id,

@@ -23,7 +23,7 @@ const SongController = {
             }
         }
         catch (error) {
-            res.status(404).send('El id no tiene el formato correcto');
+            res.status(404).send(error);
         }
         
     },
@@ -77,7 +77,7 @@ const SongController = {
             
         }
         catch(err){
-            res.status(404).send('El id no tiene el formato correcto');
+            res.status(404).send(error);
         }
         
     },
@@ -88,7 +88,7 @@ const SongController = {
             res.sendStatus(204);
         }
         catch(error) {
-            res.status(404).send('El id no tiene el formato correcto');
+            res.status(404).send(error);
         }
         
     }

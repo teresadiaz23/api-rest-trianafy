@@ -18,18 +18,19 @@ router.post('/', [
 validar, token(), SongController.newSong);
 
 router.get('/:id', [
-    //param('id').isInt().withMessage('El id tiene que ser un número entero')
+    param('id').isMongoId().withMessage('El id no tiene el formato de MongoDB ObjectId')
 ],
 validar, token(), SongController.songById);
 
 router.put('/:id', [
-    //body('id').not().exists().withMessage('No se puede editar el id')
-    //param('id').isInt().withMessage('El id tiene que ser un número entero'),
+    param('id').isMongoId().withMessage('El id no tiene el formato de MongoDB ObjectId')
     
 ],
 validar, token(), SongController.updateSong);
 
-router.delete('/:id', token(), SongController.deleteSong);
+router.delete('/:id', [
+    param('id').isMongoId().withMessage('El id no tiene el formato de MongoDB ObjectId')
+], validar, token(), SongController.deleteSong);
 
 export default router;
 
