@@ -12,13 +12,20 @@ const SongController = {
     },
 
     songById: async (req, res) => {
-        let song = await SongRepository.findById(req.params.id);
-        if(song != undefined){
-            res.json(song);
+
+        try{
+            let song = await SongRepository.findById(req.params.id);
+            if(song != undefined){
+                res.json(song);
+            }
+            else{
+                res.sendStatus(404);
+            }
         }
-        else{
-            res.sendStatus(404);
+        catch (error) {
+            res.status(404).send('El id no tiene el formato correcto');
         }
+        
     },
 
     newSong: async (req, res) => {
@@ -48,29 +55,42 @@ const SongController = {
     updateSong: async (req, res) => {
 
         try{
-            let song = await SongRepository.updateById(req.params.id, {
-                title: req.body.title,
-                artist: req.body.artist,
-                album: req.body.album,
-                year: req.body.year
-            });
-            
-            if(song != undefined) {
-                res.status(204).json(song);
+            if(!req.body.id){
+                let song = await SongRepository.updateById(req.params.id, {
+                    title: req.body.title,
+                    artist: req.body.artist,
+                    album: req.body.album,
+                    year: req.body.year
+                });
+                
+                if(song != undefined) {
+                    res.status(204).json(song);
+                }
+                else{
+                    res.sendStatus(404);
+                }
+
             }
             else{
-                res.sendStatus(404);
+                res.sendStatus(409);
             }
+            
         }
         catch(err){
-            console.log(err);
+            res.status(404).send('El id no tiene el formato correcto');
         }
         
     },
 
     deleteSong: async (req, res) => {
-        await SongRepository.delete(req.params.id);
-        res.sendStatus(204);
+        try{
+            await SongRepository.delete(req.params.id);
+            res.sendStatus(204);
+        }
+        catch(error) {
+            res.status(404).send('El id no tiene el formato correcto');
+        }
+        
     }
 
     

@@ -7,14 +7,20 @@ const AuthController = {
 
     register: async (req, res, next) => {
         
-        let newUser = await UserRepository.create({
-            fullname: req.body.fullname,
-            username: req.body.username,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_ROUNDS))
-            });
-            
-        res.status(201).json(toDto(newUser));
+        try{
+            let newUser = await UserRepository.create({
+                fullname: req.body.fullname,
+                username: req.body.username,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, parseInt(process.env.BCRYPT_ROUNDS))
+                });
+                
+            res.status(201).json(toDto(newUser));
+        }
+        catch (error){
+            res.status(400).json(error.message);
+        }
+        
     },
 
     login: (req, res, next) => {

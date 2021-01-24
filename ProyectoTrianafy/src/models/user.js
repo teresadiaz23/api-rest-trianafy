@@ -4,15 +4,24 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     _id: Schema.Types.ObjectId,
     fullname: String,
-    username: String,
-    email: String,
+    username: {
+        type: String,
+        unique: true,
+        message: 'Ese usuario ya existe'
+      },
+    email: {
+        type: String,
+        unique: true,
+        message: 'Ese email ya existe'
+      },
     password: String
 });
+
 
 const User = mongoose.model('User', userSchema);
 
 const emailExists = async (email) => {
-    const result = await User.find({'email': email});
+    const result = await User.find({'email': email}).exec();
     return result;
     // const result = await User.countDocuments({ email: email }).exec();
     // return result > 0;

@@ -27,8 +27,10 @@ const PlaylistRepository = {
     async findById(id) {
         return await Playlist
         .findById(id)
-        .populate('songs')
-        .populate('user')
+        .populate({
+            path: 'songs',
+            select: 'title artist album year'
+        })
         .exec();
     },
 
