@@ -21,7 +21,7 @@ passport.use(new LocalStrategy({
             return done(null, false);
         }
         else{
-            return done(null, toDto(user)); //Quitar que se muestre la contraseña
+            return done(null, toDto(user));
         }
     }
     catch (err) {
