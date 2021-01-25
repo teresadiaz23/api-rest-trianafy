@@ -3,10 +3,22 @@ const { Schema } = mongoose;
 
 const songSchema = new Schema({
     _id: Schema.Types.ObjectId,
-    title: String,
-    artist: String,
-    album: String,
-    year: String
+    title: {
+        type: String,
+        required: true
+      },
+    artist: {
+        type: String,
+        required: true
+      },
+    album: {
+        type: String,
+        required: true
+      },
+    year: {
+        type: String,
+        required: true
+      }
 });
 
 const Song = mongoose.model('Song', songSchema);
