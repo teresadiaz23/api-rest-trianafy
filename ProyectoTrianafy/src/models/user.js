@@ -3,18 +3,29 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     _id: Schema.Types.ObjectId,
-    fullname: String,
+    fullname: {
+        type: String,
+        required: true
+      },
     username: {
         type: String,
+        required: true,
         unique: true,
+        minlength: 6,
         message: 'Ese usuario ya existe'
       },
     email: {
         type: String,
+        required: true,
         unique: true,
         message: 'Ese email ya existe'
       },
-    password: String
+    password: {
+        type: String,
+        required: true,
+        minlength: 8,
+        maxlength: 16,
+      }
 });
 
 

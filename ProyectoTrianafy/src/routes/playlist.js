@@ -21,7 +21,8 @@ router.get('/:id', [
 validar, token(), PlaylistController.playListById);
 
 router.put('/:id', [
-    param('id').isMongoId().withMessage('El id no tiene el formato de MongoDB ObjectId')
+    param('id').isMongoId().withMessage('El id no tiene el formato de MongoDB ObjectId'),
+    body('id').not().exists().withMessage('El id no se pude modificar')
 ],
 validar, token(), PlaylistController.editPlaylist);
 

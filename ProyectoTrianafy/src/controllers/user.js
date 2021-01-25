@@ -1,4 +1,4 @@
-import { UserRepository } from "../models/user.js";
+import { toDto, UserRepository } from "../models/user.js";
 
 const UserController = {
     allUsers: async (req, res) => {
@@ -9,6 +9,22 @@ const UserController = {
         else{
             res.sendStatus(404);
         }
+    },
+
+    userById: async (req, res) => {
+        try{
+            const user = await UserRepository.findById(req.params.id);
+            if(user != undefined){
+                res.json(toDto(user));
+            }
+            else{
+                res.sendStatus(404);
+            }
+        }
+        catch (error) {
+            res.status(404).send(error);
+        }
+        
     }
 }
 

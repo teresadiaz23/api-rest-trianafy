@@ -1,5 +1,5 @@
 import { Playlist, PlaylistRepository } from "../models/playlist.js";
-import { UserRepository } from "../models/user.js";
+import { toDto, UserRepository } from "../models/user.js";
 import { SongRepository } from "../models/song.js";
 
 
@@ -26,27 +26,33 @@ const PlaylistController = {
             }
         }
         catch(error){
-            res.status(404).send(error); 
+            res.status(400).send(error); 
         }
         
     },
 
     newPlaylist: async (req, res) => {
-        let list = await PlaylistRepository.create({
-            name: req.body.name,
-            description: req.body.description,
+        try{
+            let list = await PlaylistRepository.create({
+                name: req.body.name,
+                description: req.body.description,
+                
+            });
             
-        });
+            if (list) {
+                let usuario = await req.user;
+                list.user = usuario;
+                await list.save();
+                res.status(201).json(await PlaylistRepository.findById(list._id));
+            }
+            else{
+                res.sendStatus(404);
+            }
+        }
+        catch(error){
+            res.sendStatus(400).send(error);
+        }
         
-        if (list) {
-            let usuario = await req.user;
-            list.user = usuario;
-            await list.save();
-            res.status(201).json(list);
-        }
-        else{
-            res.sendStatus(404);
-        }
     },
 
     editPlaylist: async (req, res) => {

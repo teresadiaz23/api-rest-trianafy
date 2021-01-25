@@ -3,8 +3,15 @@ const { Schema } = mongoose;
 
 const listSchema = new Schema({
     _id: Schema.Types.ObjectId,
-    name: String,
-    description: String,
+    name: {
+        type: String,
+        required: true,
+        unique: true
+      },
+    description: {
+        type: String,
+        required: true
+      },
     user: { type: mongoose.ObjectId, ref: 'User' },
     songs: [{ type: mongoose.ObjectId, ref: 'Song' }]
 });

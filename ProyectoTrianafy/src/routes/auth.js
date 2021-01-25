@@ -9,7 +9,7 @@ const router = Router();
 
 router.post('/register', [
     body('username')
-        .isLength({min: 3}).withMessage('La longitud mínima del nombre de usuario son 3 caracteres')
+        .isLength({min: 6}).withMessage('La longitud mínima del nombre de usuario son 6 caracteres')
         .custom(async username => {
             if(await usernameExists(username)) {
                 throw new Error('Ese nombre de usuario ya existe, introduce otro.');

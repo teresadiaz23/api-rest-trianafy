@@ -25,20 +25,10 @@ passport.use(new LocalStrategy({
         }
     }
     catch (err) {
-        console.log(err);
+        console.error(err);
     }
     
-    // user.then(u => {
-    //     if(u == undefined){
-    //         return done(null, false);
-    //     }
-    //     else if(!bcrypt.compareSync(password, user.password)){
-    //         return done(null, false);
-    //     }
-    //     else{
-    //         return done(null, user); //Quitar que se muestre la contraseña
-    //     }
-    // }).catch(error => console.log(error));
+    
     
 }));
 
@@ -52,14 +42,6 @@ const opts = {
 passport.use('token', new JwtStrategy(opts, (jwt_payload, done) => {
     const user_id = jwt_payload.sub;
     const user = UserRepository.findById(user_id);
-    // user.then(u => {
-    //     if(u == undefined){
-    //         return done(null, false);
-    //     }
-    //     else{
-    //         return done(null, user);
-    //     }
-    // });
     if(user == undefined){
         return done(null, false);
     }
