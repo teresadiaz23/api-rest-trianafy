@@ -2,13 +2,19 @@ import { toDto, UserRepository } from "../models/user.js";
 
 const UserController = {
     allUsers: async (req, res) => {
-        const result = await UserRepository.findAll();
-        if(Array.isArray(result) && result.length > 0){
-            res.json(result);
+        try{
+            const result = await UserRepository.findAll();
+            if(Array.isArray(result) && result.length > 0){
+                res.json(result);
+            }
+            else{
+                res.sendStatus(404);
+            }
         }
-        else{
-            res.sendStatus(404);
+        catch (error) {
+            res.sendStatus(400);
         }
+        
     },
 
     userById: async (req, res) => {
@@ -22,7 +28,7 @@ const UserController = {
             }
         }
         catch (error) {
-            res.status(404).send(error);
+            res.sendStatus(400);
         }
         
     }

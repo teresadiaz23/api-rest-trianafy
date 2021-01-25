@@ -2,13 +2,19 @@ import { SongRepository } from "../models/song.js";
 
 const SongController = {
     allSongs: async (req, res) => {
-        const result = await SongRepository.findAll();
-        if(Array.isArray(result) && result.length > 0){
-            res.json(result);
+        try{
+            const result = await SongRepository.findAll();
+            if(Array.isArray(result) && result.length > 0){
+                res.json(result);
+            }
+            else{
+                res.sendStatus(404);
+            }
         }
-        else{
-            res.sendStatus(404);
+        catch (error) {
+            res.sendStatus(400);
         }
+        
     },
 
     songById: async (req, res) => {
@@ -23,7 +29,7 @@ const SongController = {
             }
         }
         catch (error) {
-            res.status(404).send(error);
+            res.sendStatus(400);
         }
         
     },
@@ -46,7 +52,7 @@ const SongController = {
             }
         }
         catch (err){
-            console.log(err);
+            res.sendStatus(400);
 
         } 
     },
@@ -77,7 +83,7 @@ const SongController = {
             
         }
         catch(err){
-            res.status(404).send(error);
+            res.sendStatus(400);
         }
         
     },
@@ -88,7 +94,7 @@ const SongController = {
             res.sendStatus(204);
         }
         catch(error) {
-            res.status(404).send(error);
+            res.sendStatus(400);
         }
         
     }

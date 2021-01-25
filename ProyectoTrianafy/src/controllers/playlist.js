@@ -6,13 +6,20 @@ import { SongRepository } from "../models/song.js";
 const PlaylistController = {
 
     allPlaylists: async (req, res) => {
-        const lists = await PlaylistRepository.findAll();
-        if (Array.isArray(lists) && lists.length > 0){
-            res.status(200).json(lists);
+        try{
+            const lists = await PlaylistRepository.findAll();
+            if (Array.isArray(lists) && lists.length > 0){
+                res.status(200).json(lists);
+            }
+            else{
+                res.sendStatus(404);
+            }
         }
-        else{
-            res.sendStatus(404);
+        catch(error){
+            res.sendStatus(400);
         }
+        
+        
     },
 
     playListById: async (req, res) => {
@@ -26,7 +33,7 @@ const PlaylistController = {
             }
         }
         catch(error){
-            res.status(400).send(error); 
+            res.sendStatus(400);
         }
         
     },
@@ -50,11 +57,12 @@ const PlaylistController = {
             }
         }
         catch(error){
-            res.sendStatus(400).send(error);
+            res.sendStatus(400);
         }
         
     },
 
+    //Editar con comprobación del usuario
     editPlaylist: async (req, res) => {
         try{
             let lista = await PlaylistRepository.findById(req.params.id);
@@ -81,11 +89,12 @@ const PlaylistController = {
             
         }
         catch(error) {
-            res.status(404).send(error); 
+            res.sendStatus(400);
         }
         
     },
 
+    //Editar sin comprobar el usuario
     // editPlaylist: async (req, res) => {
     //     try{
             
@@ -103,7 +112,7 @@ const PlaylistController = {
     //         }
     //     }
     //     catch(error) {
-    //         res.status(404).send(error); 
+    //         res.sendStatus(400);
     //     }
         
     // },
@@ -114,7 +123,7 @@ const PlaylistController = {
             res.sendStatus(204);
         }
         catch (error){
-            res.status(404).send(error); 
+            res.sendStatus(400);
         }
         
     },
@@ -138,7 +147,7 @@ const PlaylistController = {
             }
         }
         catch (error) {
-            res.status(404).send(error); 
+            res.sendStatus(400);
         }
         
     },
@@ -156,7 +165,7 @@ const PlaylistController = {
             }
         }
         catch (error) {
-            res.status(404).send(error); 
+            res.sendStatus(400);
         }
         
     },
@@ -178,7 +187,7 @@ const PlaylistController = {
             }
         }
         catch(error){
-            res.status(404).send(error); 
+            res.sendStatus(400);
         }
         
     },
@@ -196,7 +205,7 @@ const PlaylistController = {
             }
         }
         catch(error) {
-            res.status(404).send(error);
+            res.sendStatus(400);
         }
         
     }
