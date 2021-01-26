@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    _id: Schema.Types.ObjectId,
+    //_id: Schema.Types.ObjectId,
     fullname: {
         type: String,
         required: true
@@ -23,8 +23,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        minlength: 8,
-        maxlength: 16,
+        minlength: 8
       }
 });
 
@@ -73,7 +72,7 @@ const UserRepository = {
 
     async create(newUser) {
         const usuario = new User({
-            _id: new mongoose.Types.ObjectId(),
+            //_id: new mongoose.Types.ObjectId(),
             fullname: newUser.fullname,
             username: newUser.username,
             email: newUser.email,

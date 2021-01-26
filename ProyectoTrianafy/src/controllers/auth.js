@@ -18,7 +18,7 @@ const AuthController = {
             res.status(201).json(toDto(newUser));
         }
         catch (error){
-            res.status(400).send(error);
+            res.status(400).send(error.message);
         }
         
     },

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const listSchema = new Schema({
-    _id: Schema.Types.ObjectId,
+    //_id: Schema.Types.ObjectId,
     name: {
         type: String,
         required: true,
@@ -23,10 +23,7 @@ const PlaylistRepository = {
     async findAll() {
         const list = await Playlist.find()
         //.populate('user')
-        .populate({
-            path: 'songs',
-            select: 'title artist album year'
-        })
+        .populate('songs','title artist')
         .exec();
         return list; 
     },
@@ -34,17 +31,14 @@ const PlaylistRepository = {
     async findById(id) {
         return await Playlist
         .findById(id)
-        .populate('user', '_id')
-        .populate({
-            path: 'songs',
-            select: 'title artist album year'
-        })
+        //.populate('user', '_id')
+        .populate('songs','title artist album year')
         .exec();
     },
 
     async create(newPlaylist) {
         const list = new Playlist({
-            _id: new mongoose.Types.ObjectId(),
+            //_id: new mongoose.Types.ObjectId(),
             name: newPlaylist.name,
             description: newPlaylist.description,
         });
