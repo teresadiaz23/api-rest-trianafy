@@ -2,29 +2,28 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    _id: Schema.Types.ObjectId,
+    //_id: Schema.Types.ObjectId,
     fullname: {
         type: String,
-        required: true
+        required: [true, 'Tiene que introducir su nombre completo']
       },
     username: {
         type: String,
-        required: true,
-        unique: true,
-        minlength: 6,
-        message: 'Ese usuario ya existe'
+        required: [true, 'Tiene que introducir un nombre de usuario'],
+        unique: [true, 'Ese username ya existe'],
+        minlength: [5,'Tiene que tener como mínimo 5 caracteres']
+        
       },
     email: {
         type: String,
-        required: true,
-        unique: true,
-        message: 'Ese email ya existe'
+        required: [true, 'Tiene que introducir un email'],
+        unique: [true, 'Ese email ya existe']
+        
       },
     password: {
         type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 16,
+        required: [true, 'Tiene que introducir una contraseña'],
+        minlength: [8, 'Tiene que tener como mínimo 8 caracteres']
       }
 });
 
@@ -73,7 +72,7 @@ const UserRepository = {
 
     async create(newUser) {
         const usuario = new User({
-            _id: new mongoose.Types.ObjectId(),
+            //_id: new mongoose.Types.ObjectId(),
             fullname: newUser.fullname,
             username: newUser.username,
             email: newUser.email,
