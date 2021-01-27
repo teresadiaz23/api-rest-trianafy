@@ -45,6 +45,7 @@ const PlaylistRepository = {
             //_id: new mongoose.Types.ObjectId(),
             name: newPlaylist.name,
             description: newPlaylist.description,
+            user: newPlaylist.user,
             public: newPlaylist.public
         });
         

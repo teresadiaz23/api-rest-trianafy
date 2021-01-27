@@ -11,7 +11,8 @@ router.get('/', token(), PlaylistController.allPlaylists);
 
 router.post('/', [
     body('name').exists().withMessage('Tiene que introducir el nombre de la lista de reproducción.'),
-    body('description').exists().withMessage('Tiene que introducir la descripción de la lista de reproducción.')
+    body('description').exists().withMessage('Tiene que introducir la descripción de la lista de reproducción.'),
+    body('public').exists().withMessage('Tiene que indicar si la lista es pública o privada')
 ],
 validar, token(), PlaylistController.newPlaylist);
 

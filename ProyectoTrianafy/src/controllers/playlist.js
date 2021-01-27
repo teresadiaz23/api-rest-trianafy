@@ -72,14 +72,14 @@ const PlaylistController = {
             let list = await PlaylistRepository.create({
                 name: req.body.name,
                 description: req.body.description,
-                public: req.body.public
-                
+                user: await req.user,
+                public: req.body.public  
             });
             
             if (list) {
-                let usuario = await req.user;
-                list.user = usuario;
-                await list.save();
+                //let usuario = await req.user;
+                //list.user = usuario;
+                //await list.save();
                 res.status(201).json(await PlaylistRepository.findById(list._id));
             }
             else{
@@ -224,7 +224,6 @@ const PlaylistController = {
             let usuario = await req.user;
             if(list.user._id == usuario.id || list.public){
                 if(list != undefined) {
-                    
                     let song = await SongRepository.findById(req.params.id_song);
                     let result = list.songs.find(s => s.id == song.id);
                     if(result != undefined){

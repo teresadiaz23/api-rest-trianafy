@@ -5,25 +5,25 @@ const userSchema = new Schema({
     //_id: Schema.Types.ObjectId,
     fullname: {
         type: String,
-        required: true
+        required: [true, 'Tiene que introducir su nombre completo']
       },
     username: {
         type: String,
-        required: true,
-        unique: true,
-        minlength: 5,
-        message: 'Ese usuario ya existe'
+        required: [true, 'Tiene que introducir un nombre de usuario'],
+        unique: [true, 'Ese username ya existe'],
+        minlength: [5,'Tiene que tener como mínimo 5 caracteres']
+        
       },
     email: {
         type: String,
-        required: true,
-        unique: true,
-        message: 'Ese email ya existe'
+        required: [true, 'Tiene que introducir un email'],
+        unique: [true, 'Ese email ya existe']
+        
       },
     password: {
         type: String,
-        required: true,
-        minlength: 8
+        required: [true, 'Tiene que introducir una contraseña'],
+        minlength: [8, 'Tiene que tener como mínimo 8 caracteres']
       }
 });
 
