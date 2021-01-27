@@ -11,7 +11,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        minlength: 6,
+        minlength: 5,
         message: 'Ese usuario ya existe'
       },
     email: {

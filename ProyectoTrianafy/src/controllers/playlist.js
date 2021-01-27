@@ -8,8 +8,18 @@ const PlaylistController = {
     allPlaylists: async (req, res) => {
         try{
             const lists = await PlaylistRepository.findAll();
+            
             if (Array.isArray(lists) && lists.length > 0){
-                res.status(200).json(lists);
+                let usuario = await req.user;
+                let result = lists.filter(l => l.user._id == usuario.id);
+                console.log(result)
+                if(result.length > 0){
+                    res.status(200).json(result);
+                }
+                else{
+                    res.status(404).send('No tienes listas de reproducción propias.')
+                }
+                
             }
             else{
                 res.sendStatus(404);
