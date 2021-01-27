@@ -13,7 +13,11 @@ const listSchema = new Schema({
         required: true
       },
     user: { type: mongoose.ObjectId, ref: 'User' },
-    songs: [{ type: mongoose.ObjectId, ref: 'Song' }]
+    songs: [{ type: mongoose.ObjectId, ref: 'Song' }],
+    public: {
+        type: Boolean,
+        required: true
+      }
 });
 
 const Playlist = mongoose.model('Playlist', listSchema);
@@ -41,6 +45,7 @@ const PlaylistRepository = {
             //_id: new mongoose.Types.ObjectId(),
             name: newPlaylist.name,
             description: newPlaylist.description,
+            public: newPlaylist.public
         });
         
         const result = await list.save();

@@ -59,13 +59,15 @@ let playlists = [
         description: "Baladas relajantes, llenapistas para no parar de bailar, pop colorido o el nuevo hip-hop."+
         "En esta playlist están incluidas las canciones que más suenan en todo el mundo ahora mismo.",
         songs: [canciones[0], canciones[1]],
-        user: usuarios[0]
+        user: usuarios[0],
+        public: true
     }),
     new Playlist({
         name: "Lista VIP: Pop",
         description: "En esta lista se encuentan las canciones pop internacional más escuchadas.",
         songs: [canciones[2], canciones[3]],
-        user: usuarios[0]
+        user: usuarios[0],
+        public: false
     })
 ];
 

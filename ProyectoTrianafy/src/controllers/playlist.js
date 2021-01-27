@@ -10,14 +10,25 @@ const PlaylistController = {
             const lists = await PlaylistRepository.findAll();
             
             if (Array.isArray(lists) && lists.length > 0){
+                let publicas = lists.filter(l => l.public == true);
                 let usuario = await req.user;
                 let result = lists.filter(l => l.user._id == usuario.id);
-                console.log(result)
                 if(result.length > 0){
+                    publicas.forEach( c => {
+                        if(!result.includes(c))
+                            result.push(c);
+                    });
+                    
                     res.status(200).json(result);
                 }
                 else{
-                    res.status(404).send('No tienes listas de reproducción propias.')
+                    if(publicas.length > 0){
+                        res.status(200).json(publicas); 
+                    }
+                    else{
+                        res.status(404).send('No tienes listas de reproducción propias y no hay ninguna pública.')
+                    }
+                    
                 }
                 
             }
@@ -39,11 +50,11 @@ const PlaylistController = {
             
             if(list != undefined){
                 let usuario = await req.user;
-                if(list.user._id == usuario.id){
+                if(list.user._id == usuario.id || list.public){
                     res.json(list);
                 }
                 else{
-                    res.status(401).send('Esa lista de reproducción es privada')
+                    res.status(401).send('Esta lista de reproducción es privada')
                 }
             }
             else{
@@ -61,6 +72,7 @@ const PlaylistController = {
             let list = await PlaylistRepository.create({
                 name: req.body.name,
                 description: req.body.description,
+                public: req.body.public
                 
             });
             
@@ -89,7 +101,8 @@ const PlaylistController = {
                 let list = await PlaylistRepository
                 .updateById(req.params.id, {
                     name: req.body.name,
-                    description: req.body.description
+                    description: req.body.description,
+                    public: req.body.public
                 });
 
                 if(list != undefined) {
@@ -100,7 +113,7 @@ const PlaylistController = {
                 }
             }
             else{
-                res.status(401).send('No tienes permiso para editar esa lista de reproducción.')
+                res.status(401).send('No tienes permiso para editar esta lista de reproducción.')
             }
             
         }
@@ -142,7 +155,7 @@ const PlaylistController = {
                 res.sendStatus(204);
             }
             else{
-                res.status(401).send('No tienes permiso para borrar esa lista de reproducción.')
+                res.status(401).send('No tienes permiso para borrar esta lista de reproducción.')
             }
         }
         catch (error){
@@ -164,7 +177,7 @@ const PlaylistController = {
                         res.json(await PlaylistRepository.findById(list._id));
                     }
                     else{
-                        res.status(401).send('No tienes permiso para añadir canciones a esa lista de reproducción.')
+                        res.status(401).send('No tienes permiso para añadir canciones a esta lista de reproducción.')
                     }
                 }
                 else{
@@ -185,7 +198,7 @@ const PlaylistController = {
         try{
             let list = await PlaylistRepository.findById(req.params.id);
             let usuario = await req.user;
-            if(list.user._id == usuario.id){
+            if(list.user._id == usuario.id || list.public){
                 if(list != undefined) {
                     let songs = list.songs;
                     res.json(songs);
@@ -195,7 +208,7 @@ const PlaylistController = {
                 }
             }
             else{
-                res.status(401).send('No tienes permiso para ver esa lista de reproducción.')
+                res.status(401).send('Esta lista de reproducción es privada.')
             }
             
         }
@@ -209,7 +222,7 @@ const PlaylistController = {
         try{
             let list = await PlaylistRepository.findById(req.params.id_list);
             let usuario = await req.user;
-            if(list.user._id == usuario.id){
+            if(list.user._id == usuario.id || list.public){
                 if(list != undefined) {
                     
                     let song = await SongRepository.findById(req.params.id_song);
@@ -240,7 +253,7 @@ const PlaylistController = {
                 
             }
             else{
-                res.status(401).send('No tienes permiso para ver esa lista de reproducción.')
+                res.status(401).send('Esta lista de reproducción es privada.')
             }
             
             
