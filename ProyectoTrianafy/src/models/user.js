@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
+
 const userSchema = new Schema({
     //_id: Schema.Types.ObjectId,
     fullname: {
@@ -10,14 +11,14 @@ const userSchema = new Schema({
     username: {
         type: String,
         required: [true, 'Tiene que introducir un nombre de usuario'],
-        unique: [true, 'Ese username ya existe'],
+        unique: true,
         minlength: [5,'Tiene que tener como mínimo 5 caracteres']
         
       },
     email: {
         type: String,
         required: [true, 'Tiene que introducir un email'],
-        unique: [true, 'Ese email ya existe']
+        unique: true
         
       },
     password: {
@@ -26,6 +27,7 @@ const userSchema = new Schema({
         minlength: [8, 'Tiene que tener como mínimo 8 caracteres']
       }
 });
+
 
 
 const User = mongoose.model('User', userSchema);

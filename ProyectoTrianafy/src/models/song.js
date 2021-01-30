@@ -5,19 +5,19 @@ const songSchema = new Schema({
     //_id: Schema.Types.ObjectId,
     title: {
         type: String,
-        required: true
+        required: [true, 'Tiene que introducir el título de la canción']
       },
     artist: {
         type: String,
-        required: true
+        required: [true, 'Tiene que introducir el nombre del cantante o grupo']
       },
     album: {
         type: String,
-        required: true
+        required: [true, 'Tiene que introducir el nombre del álbum']
       },
     year: {
         type: String,
-        required: true
+        required: [true, 'Tiene que introducir el año de publicación del album']
       }
 });
 

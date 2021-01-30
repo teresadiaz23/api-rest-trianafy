@@ -37,7 +37,7 @@ const PlaylistController = {
             }
         }
         catch(error){
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
         
@@ -62,7 +62,7 @@ const PlaylistController = {
             }
         }
         catch(error){
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -87,7 +87,7 @@ const PlaylistController = {
             }
         }
         catch(error){
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -118,7 +118,7 @@ const PlaylistController = {
             
         }
         catch(error) {
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -159,7 +159,7 @@ const PlaylistController = {
             }
         }
         catch (error){
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -189,7 +189,7 @@ const PlaylistController = {
             }
         }
         catch (error) {
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -213,7 +213,7 @@ const PlaylistController = {
             
         }
         catch (error) {
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -258,7 +258,7 @@ const PlaylistController = {
             
         }
         catch(error){
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -283,7 +283,7 @@ const PlaylistController = {
             
         }
         catch(error) {
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     }

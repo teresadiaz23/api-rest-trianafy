@@ -5,18 +5,17 @@ const listSchema = new Schema({
     //_id: Schema.Types.ObjectId,
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: [true, 'Tiene que introducir el nombre de la lista de reproducción']
       },
     description: {
         type: String,
-        required: true
+        required: [true, 'Tiene que introducir la descripción de la lista de reprodución']
       },
     user: { type: mongoose.ObjectId, ref: 'User' },
     songs: [{ type: mongoose.ObjectId, ref: 'Song' }],
     public: {
         type: Boolean,
-        required: true
+        required: [true, 'Tiene que indicar si la lista es pública (true) o privada (false)']
       }
 });
 
