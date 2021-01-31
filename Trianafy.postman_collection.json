@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "b704972d-86d5-4d5e-b0fa-2832e21b864f",
+		"name": "Trianafy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Songs",
+			"item": [
+				{
+					"name": "GET Todas las canciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE1MTA0ODMsImV4cCI6MTYxMTU5Njg4M30.MVFsIgj4J9YWsaMCcxd9aVSzPA6ns5Fo98sDbfEpaWI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/songs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Crear canción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE1MTA0ODMsImV4cCI6MTYxMTU5Njg4M30.MVFsIgj4J9YWsaMCcxd9aVSzPA6ns5Fo98sDbfEpaWI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Alejandro\",\r\n    \"artist\": \"Lady Gaga\",\r\n    \"album\": \"The Fame Monster\",\r\n    \"year\": \"2010\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/songs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Canción por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE1MTA0ODMsImV4cCI6MTYxMTU5Njg4M30.MVFsIgj4J9YWsaMCcxd9aVSzPA6ns5Fo98sDbfEpaWI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/songs/6009871a61bce03808154b85",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"songs",
+								"6009871a61bce03808154b85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Editar canción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE1MTA0ODMsImV4cCI6MTYxMTU5Njg4M30.MVFsIgj4J9YWsaMCcxd9aVSzPA6ns5Fo98sDbfEpaWI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Bad Romance\",\r\n    \"artist\": \"Lady Gaga\",\r\n    \"album\": \"The Fame Monster\",\r\n    \"year\": \"2010\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/songs/6009871a61bce03808154b85",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"songs",
+								"6009871a61bce03808154b85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Borrar canción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE1MTA0ODMsImV4cCI6MTYxMTU5Njg4M30.MVFsIgj4J9YWsaMCcxd9aVSzPA6ns5Fo98sDbfEpaWI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/songs/600db30ddea4aa25d45cd97b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"songs",
+								"600db30ddea4aa25d45cd97b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "POST Registro usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullname\": \"Luis Miguel López\",\r\n    \"username\": \"luismi\",\r\n    \"email\": \"luismi@email.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tdiaz\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GET Todos los usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE1MTA0ODMsImV4cCI6MTYxMTU5Njg4M30.MVFsIgj4J9YWsaMCcxd9aVSzPA6ns5Fo98sDbfEpaWI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Usuario por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE1MTM5MzMsImV4cCI6MTYxMTYwMDMzM30.xkGVeUJnzNzJ0G49dJ9oRq7RX67kR0VFf7L453slldQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/users/600c5ae8563d865d5cc1dc4c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"600c5ae8563d865d5cc1dc4c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lists",
+			"item": [
+				{
+					"name": "GET Todas las listas de reproducción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDE2ZWUyYTQ2MjZiODI2NTQ1NzRkYTMiLCJpYXQiOjE2MTIxMTU1ODMsImV4cCI6MTYxMjIwMTk4M30.GUcjMgFVZoCpcHb1Nn4Uva0xT-nZMFziNIZcS1sdP-I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/lists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Crear lista de reproducción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTIwMjg2OTksImV4cCI6MTYxMjExNTA5OX0.STzEpc7lyYf2BknyBowAcl8e1RW_soZeyyyOVQilio8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Éxitos de hoy\",\r\n    \"description\": \"En esta playlist se encuentran las canciones que más suenan en todo el mundo ahora mismo\",\r\n    \"public\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/lists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Editar lista de reproducción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE3NTExNzMsImV4cCI6MTYxMTgzNzU3M30.7Oicj6la_itpyBDheSnaFjLurYSue5BTHb0lJMbeSAo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Éxitos de hoy\",\r\n    \"description\": \"En esta playlist se encuentran las canciones que más suenan en todo el mundo ahora mismo\",\r\n    \"public\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/lists/600c6ffc139aa6493c7ca014",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists",
+								"600c6ffc139aa6493c7ca014"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Borrar lista de reproducción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE1MTA0ODMsImV4cCI6MTYxMTU5Njg4M30.MVFsIgj4J9YWsaMCcxd9aVSzPA6ns5Fo98sDbfEpaWI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/lists/600db3cf0aeb3c35246ce9ca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists",
+								"600db3cf0aeb3c35246ce9ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Lista de reproducción por id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDE2ZWUyYTQ2MjZiODI2NTQ1NzRkYTMiLCJpYXQiOjE2MTIxMTU1ODMsImV4cCI6MTYxMjIwMTk4M30.GUcjMgFVZoCpcHb1Nn4Uva0xT-nZMFziNIZcS1sdP-I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/lists/6016ee2a4626b82654574da5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists",
+								"6016ee2a4626b82654574da5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Añadir cancion a lista repoducción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE2Nzg3MTYsImV4cCI6MTYxMTc2NTExNn0.BsyCk3F1ZeG4PSsqPotMOGrG0uI7ZBtlRAocBH4qrts",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/lists/600c6ffc139aa6493c7ca014/songs/6009871a61bce03808154b85",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists",
+								"600c6ffc139aa6493c7ca014",
+								"songs",
+								"6009871a61bce03808154b85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Borrar canción de lista de reproducción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDBjNWFlODU2M2Q4NjVkNWNjMWRjNGMiLCJpYXQiOjE2MTE2Nzg3MTYsImV4cCI6MTYxMTc2NTExNn0.BsyCk3F1ZeG4PSsqPotMOGrG0uI7ZBtlRAocBH4qrts",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/lists/600c6ffc139aa6493c7ca014/songs/6009871a61bce03808154b85",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists",
+								"600c6ffc139aa6493c7ca014",
+								"songs",
+								"6009871a61bce03808154b85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Todas las canciones de lista reproducción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDE2ZWUyYTQ2MjZiODI2NTQ1NzRkYTMiLCJpYXQiOjE2MTIxMTU1ODMsImV4cCI6MTYxMjIwMTk4M30.GUcjMgFVZoCpcHb1Nn4Uva0xT-nZMFziNIZcS1sdP-I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/lists/6016ee2a4626b82654574da5/songs/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists",
+								"6016ee2a4626b82654574da5",
+								"songs",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Canción de lista de reproducción",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MDE2ZWUyYTQ2MjZiODI2NTQ1NzRkYTMiLCJpYXQiOjE2MTIxMTU1ODMsImV4cCI6MTYxMjIwMTk4M30.GUcjMgFVZoCpcHb1Nn4Uva0xT-nZMFziNIZcS1sdP-I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/lists/6016ee2a4626b82654574da5/songs/6016ee294626b82654574da2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"lists",
+								"6016ee2a4626b82654574da5",
+								"songs",
+								"6016ee294626b82654574da2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
