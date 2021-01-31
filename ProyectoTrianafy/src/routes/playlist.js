@@ -9,12 +9,7 @@ const router = Router();
 
 router.get('/', token(), PlaylistController.allPlaylists);
 
-router.post('/', [
-    body('name').exists().withMessage('Tiene que introducir el nombre de la lista de reproducción.'),
-    body('description').exists().withMessage('Tiene que introducir la descripción de la lista de reproducción.'),
-    body('public').exists().withMessage('Tiene que indicar si la lista es pública o privada')
-],
-validar, token(), PlaylistController.newPlaylist);
+router.post('/', token(), PlaylistController.newPlaylist);
 
 router.get('/:id', [
     param('id').isMongoId().withMessage('El id no tiene el formato de MongoDB ObjectId')

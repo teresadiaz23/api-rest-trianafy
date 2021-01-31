@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
+
 const userSchema = new Schema({
-    //_id: Schema.Types.ObjectId,
     fullname: {
         type: String,
         required: [true, 'Tiene que introducir su nombre completo']
@@ -10,14 +10,14 @@ const userSchema = new Schema({
     username: {
         type: String,
         required: [true, 'Tiene que introducir un nombre de usuario'],
-        unique: [true, 'Ese username ya existe'],
+        unique: true,
         minlength: [5,'Tiene que tener como mínimo 5 caracteres']
         
       },
     email: {
         type: String,
         required: [true, 'Tiene que introducir un email'],
-        unique: [true, 'Ese email ya existe']
+        unique: true
         
       },
     password: {
@@ -26,6 +26,7 @@ const userSchema = new Schema({
         minlength: [8, 'Tiene que tener como mínimo 8 caracteres']
       }
 });
+
 
 
 const User = mongoose.model('User', userSchema);
@@ -52,7 +53,6 @@ const toDto = (user) => {
 }
 
 
-
 const UserRepository = {
 
     async findAll() {
@@ -72,7 +72,6 @@ const UserRepository = {
 
     async create(newUser) {
         const usuario = new User({
-            //_id: new mongoose.Types.ObjectId(),
             fullname: newUser.fullname,
             username: newUser.username,
             email: newUser.email,
@@ -91,19 +90,6 @@ const UserRepository = {
 
 
 }
-
-// let yo = new User({
-//     _id: new mongoose.Types.ObjectId(),
-//     fullname: "Teresa Díaz",
-//     username: "tdiaz",
-//     email: "teresa@gmail.com",
-//     password: "1234"
-// });
-
-// yo.save(err => {
-//     if(err) throw err;
-//     console.log("Guardado con éxito");
-// })
 
 export {
     User,

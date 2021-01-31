@@ -12,7 +12,7 @@ const SongController = {
             }
         }
         catch (error) {
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -29,7 +29,7 @@ const SongController = {
             }
         }
         catch (error) {
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     },
@@ -43,7 +43,7 @@ const SongController = {
                 album: req.body.album,
                 year: req.body.year
             });
-            //res.status(201).json(song);
+            
             if (song) {
                 res.status(201).json(song);
             }
@@ -51,8 +51,8 @@ const SongController = {
                 res.sendStatus(404);
             }
         }
-        catch (err){
-            res.sendStatus(400);
+        catch (error){
+            res.status(400).json(error.message);
 
         } 
     },
@@ -82,8 +82,8 @@ const SongController = {
             }
             
         }
-        catch(err){
-            res.sendStatus(400);
+        catch(error){
+            res.status(400).json(error.message);
         }
         
     },
@@ -94,12 +94,10 @@ const SongController = {
             res.sendStatus(204);
         }
         catch(error) {
-            res.sendStatus(400);
+            res.status(400).json(error.message);
         }
         
     }
-
-    
 
 }
 

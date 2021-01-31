@@ -9,10 +9,6 @@ const router = Router();
 router.get('/', token(), SongController.allSongs);
 
 router.post('/', [
-    body('title').exists().withMessage('Tiene que introducir el título de la canción'),
-    body('artist').exists().withMessage('Tiene que introducir el nombre del cantante o grupo'),
-    body('album').exists().withMessage('Tiene que introducir el nombre del álbum'),
-    body('year').exists().withMessage('Tiene que introducir el año de publicación del album'),
     body('id').not().exists().withMessage('No tiene que introducir un id, se generará automáticamente.')
 ],
 validar, token(), SongController.newSong);
