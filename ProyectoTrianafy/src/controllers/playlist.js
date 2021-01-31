@@ -173,18 +173,20 @@ const PlaylistController = {
         try{
             let list = await PlaylistRepository.findById(req.params.id);
             let usuario = await req.user;
-            if(list.user._id == usuario.id || list.public){
-                if(list != undefined) {
+           
+            if(list != undefined) {
+                if(list.user._id == usuario.id || list.public){
                     let songs = list.songs;
                     res.json(songs);
                 }
                 else{
-                    res.sendStatus(404);
+                    res.status(401).send('Esta lista de reproducción es privada.')
                 }
             }
             else{
-                res.status(401).send('Esta lista de reproducción es privada.')
+                res.sendStatus(404);
             }
+            
             
         }
         catch (error) {
@@ -197,25 +199,37 @@ const PlaylistController = {
         try{
             let list = await PlaylistRepository.findById(req.params.id_list);
             let usuario = await req.user;
-            if(list.user._id == usuario.id || list.public){
-                if(list != undefined) {
-                    let song = await SongRepository.findById(req.params.id_song);
+            
+            if(list != undefined) {
+                
+                let song = await SongRepository.findById(req.params.id_song);
+                if(song != undefined){
                     let result = list.songs.find(s => s.id == song.id);
-                    if(result != undefined){
-                        res.json(result);
+                    if(list.user._id == usuario.id || list.public){
+                        if(result != undefined){
+                            res.json(result);
+                        }
+                    
+                        else{
+                            res.status(404).send('Esa canción no se encuentra en la lista de reproducción.')
+                        }
                     }
                     else{
-                        res.status(404).send('Esa canción no se encuentra en la lista de reproducción.')
+                            res.status(401).send('Esta lista de reproducción es privada.')
                     }
+                    
                 }
                 else{
                     res.sendStatus(404);
                 }
                 
+                
             }
             else{
-                res.status(401).send('Esta lista de reproducción es privada.')
+                    res.sendStatus(404);
             }
+                
+            
             
             
         }
