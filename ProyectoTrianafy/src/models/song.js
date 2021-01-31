@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const songSchema = new Schema({
-    //_id: Schema.Types.ObjectId,
     title: {
         type: String,
         required: [true, 'Tiene que introducir el título de la canción']
@@ -36,7 +35,6 @@ const SongRepository = {
 
     async create(newSong) {
         const song = new Song({
-            //_id: new mongoose.Types.ObjectId(),
             title: newSong.title,
             artist: newSong.artist,
             album: newSong.album,
@@ -64,20 +62,6 @@ const SongRepository = {
     
     
 }
-
-// let romance = new Song({
-//     _id: new mongoose.Types.ObjectId(),
-//     title: "Bad Romance",
-//     artist: "Lady Gaga",
-//     album: "The Fame Monster",
-//     year: "2010"
-// });
-
-// romance.save(err => {
-//     if(err) throw err;
-//     console.log("Guardado con éxito");
-// })
-
 
 
 export {

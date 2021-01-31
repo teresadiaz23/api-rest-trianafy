@@ -77,9 +77,6 @@ const PlaylistController = {
             });
             
             if (list) {
-                //let usuario = await req.user;
-                //list.user = usuario;
-                //await list.save();
                 res.status(201).json(await PlaylistRepository.findById(list._id));
             }
             else{
@@ -92,7 +89,7 @@ const PlaylistController = {
         
     },
 
-    //Editar con comprobación del usuario
+    
     editPlaylist: async (req, res) => {
         try{
             let lista = await PlaylistRepository.findById(req.params.id);
@@ -123,29 +120,7 @@ const PlaylistController = {
         
     },
 
-    //Editar sin comprobar el usuario
-    // editPlaylist: async (req, res) => {
-    //     try{
-            
-    //         let list = await PlaylistRepository
-    //         .updateById(req.params.id, {
-    //             name: req.body.name,
-    //             description: req.body.description
-    //         });
-
-    //         if(list != undefined) {
-    //             res.status(204).json(list);
-    //         }
-    //         else{
-    //             res.sendStatus(404);
-    //         }
-    //     }
-    //     catch(error) {
-    //         res.sendStatus(400);
-    //     }
-        
-    // },
-
+    
     deletePlaylist: async (req, res) => {
         try{
             let list = await PlaylistRepository.findById(req.params.id);
@@ -232,19 +207,6 @@ const PlaylistController = {
                     else{
                         res.status(404).send('Esa canción no se encuentra en la lista de reproducción.')
                     }
-
-                    // if(song != undefined){
-                        
-                    //         res.json(song);
-                        
-                    //     else{
-                    //         res.status(404).send('Esa canción no se encuentra en la lista de reproducción.')
-                    //     }
-                        
-                    // }
-                    // else{
-                    //     res.sendStatus(404);
-                    // }
                 }
                 else{
                     res.sendStatus(404);

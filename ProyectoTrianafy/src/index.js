@@ -36,14 +36,12 @@ app.use((req, res, next) => {
 
 
 
-
-
-// Inicialización del servidor y conexión a base de datos
-
 app.use('/songs', routes.song);
 app.use('/auth', routes.auth);
 app.use('/users', routes.user);
 app.use('/lists', routes.playlist);
+
+// Inicialización del servidor y conexión a base de datos
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
   

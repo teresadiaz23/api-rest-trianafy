@@ -43,7 +43,7 @@ const SongController = {
                 album: req.body.album,
                 year: req.body.year
             });
-            //res.status(201).json(song);
+            
             if (song) {
                 res.status(201).json(song);
             }
@@ -98,8 +98,6 @@ const SongController = {
         }
         
     }
-
-    
 
 }
 
