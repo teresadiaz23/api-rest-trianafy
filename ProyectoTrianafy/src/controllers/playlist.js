@@ -26,7 +26,10 @@ const PlaylistController = {
                         res.status(200).json(publicas); 
                     }
                     else{
-                        res.status(404).send('No tienes listas de reproducción propias y no hay ninguna pública.')
+                        res.status(404).json({
+                            mensaje: 'No tienes listas de reproducción propias y no hay ninguna pública.'
+                        });
+                        
                     }
                     
                 }
@@ -54,7 +57,10 @@ const PlaylistController = {
                     res.json(list);
                 }
                 else{
-                    res.status(401).send('Esta lista de reproducción es privada')
+                    res.status(401).json({
+                        mensaje: 'Esta lista de reproducción es privada.'
+                    });
+                    
                 }
             }
             else{
@@ -110,7 +116,9 @@ const PlaylistController = {
                 }
             }
             else{
-                res.status(401).send('No tienes permiso para editar esta lista de reproducción.')
+                res.status(401).json({
+                    mensaje: 'No tienes permiso para editar esta lista de reproducción.'
+                });
             }
             
         }
@@ -130,7 +138,9 @@ const PlaylistController = {
                 res.sendStatus(204);
             }
             else{
-                res.status(401).send('No tienes permiso para borrar esta lista de reproducción.')
+                res.status(401).json({
+                    mensaje: 'No tienes permiso para borrar esta lista de reproducción.'
+                });
             }
         }
         catch (error){
@@ -152,7 +162,9 @@ const PlaylistController = {
                         res.json(await PlaylistRepository.findById(list._id));
                     }
                     else{
-                        res.status(401).send('No tienes permiso para añadir canciones a esta lista de reproducción.')
+                        res.status(401).json({
+                            mensaje: 'No tienes permiso para añadir canciones a esta lista de reproducción.'
+                        });
                     }
                 }
                 else{
@@ -180,7 +192,9 @@ const PlaylistController = {
                     res.json(songs);
                 }
                 else{
-                    res.status(401).send('Esta lista de reproducción es privada.')
+                    res.status(401).json({
+                        mensaje: 'Esta lista de reproducción es privada.'
+                    });
                 }
             }
             else{
@@ -211,11 +225,15 @@ const PlaylistController = {
                         }
                     
                         else{
-                            res.status(404).send('Esa canción no se encuentra en la lista de reproducción.')
+                            res.status(404).json({
+                                mensaje: 'Esa canción no se encuentra en la lista de reproducción.'
+                            });
                         }
                     }
                     else{
-                            res.status(401).send('Esta lista de reproducción es privada.')
+                            res.status(401).json({
+                                mensaje: 'Esta lista de reproducción es privada.'
+                            });
                     }
                     
                 }
@@ -254,7 +272,9 @@ const PlaylistController = {
                 }
             }
             else{
-                res.status(401).send('No tienes permiso para borrar esa canción de la lista de reproducción.')
+                res.status(401).json({
+                    mensaje: 'No tienes permiso para borrar esa canción de la lista de reproducción.'
+                });
             }
             
         }
